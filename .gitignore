@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Ne pas ignorer complètement le dossier target/
+# Inclure le fichier jar généré
+!target/*.jar
+
 ### STS ###
 .apt_generated
 .classpath

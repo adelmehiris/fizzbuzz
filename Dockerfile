@@ -1,14 +1,20 @@
-# Utiliser une image légère de Java 21
+# Utiliser Java 21
 FROM eclipse-temurin:21-jdk-jammy
 
-# Définir le répertoire de travail dans le conteneur
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le fichier jar généré depuis le dossier target
-COPY target/fizzbuzz.jar app.jar
+# Copier le code source et les fichiers nécessaires
+COPY . .
 
-# Exposer le port par défaut (Render gère automatiquement les ports dynamiques)
+# Construire le fichier .jar
+RUN ./mvnw clean package -DskipTests
+
+# Copier le fichier généré vers l'application
+RUN cp target/*.jar app.jar
+
+# Exposer le port
 EXPOSE 8080
 
-# Démarrer l'application avec le profil prod
+# Lancer l'application avec le profil prod
 CMD ["java", "-jar", "app.jar", "--spring.profiles.active=prod"]

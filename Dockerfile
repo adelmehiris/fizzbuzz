@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-jammy
 WORKDIR /app
 
 # Copier le fichier jar généré
-COPY target/fizzbuzz.jar app.jar
+COPY target/fizzbuzz-0.0.1-SNAPSHOT.jar app.jar
 
 # Exposer le port
 EXPOSE 8080
